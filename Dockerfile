@@ -14,7 +14,7 @@ ARG APP_NAME
 WORKDIR /app
 
 # Include the static directory in the build context
-# COPY static /app/static
+COPY src/static /app/src/static
 
 # Build the application.
 # Leverage a cache mount to /usr/local/cargo/registry/
@@ -61,7 +61,7 @@ RUN adduser \
 USER appuser
 
 # Copy the static files from the "build" stage
-# COPY --from=build /app/static /app/static
+COPY --from=build /app/src/static /app/src/static
 
 # Copy the executable from the "build" stage.
 COPY --from=build /bin/server /bin/
