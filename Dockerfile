@@ -14,7 +14,7 @@ ARG APP_NAME
 WORKDIR /app
 
 # Include the static directory in the build context
-COPY static /app/static
+# COPY static /app/static
 
 # Build the application.
 # Leverage a cache mount to /usr/local/cargo/registry/
@@ -24,7 +24,6 @@ COPY static /app/static
 # source code into the container. Once built, copy the executable to an
 # output directory before the cache mounted /app/target is unmounted.
 RUN --mount=type=bind,source=src,target=src \
-    # --mount=type=bind,source=static,target=static \
     --mount=type=bind,source=Cargo.toml,target=Cargo.toml \
     --mount=type=bind,source=Cargo.lock,target=Cargo.lock \
     --mount=type=cache,target=/app/target/ \
@@ -62,7 +61,7 @@ RUN adduser \
 USER appuser
 
 # Copy the static files from the "build" stage
-COPY --from=build /app/static /app/static
+# COPY --from=build /app/static /app/static
 
 # Copy the executable from the "build" stage.
 COPY --from=build /bin/server /bin/
