@@ -1,0 +1,34 @@
+[global]
+address = "127.0.0.1"
+port = 8000
+workers = 4 
+keep_alive = 5
+log_level = "normal"
+
+
+[profile.debug]
+address = "127.0.0.1"
+port = 8000
+workers = 4 
+keep_alive = 5
+log_level = "debug"
+# secret_key = [randomly generated at launch]
+# limits = { forms = 32768 }
+
+[profile.staging]
+address = "0.0.0.0"
+port = 8000
+workers = 4
+keep_alive = 5
+log_level = "normal"
+# secret_key = [randomly generated at launch]
+# limits = { forms = 32768 }
+
+[profile.release]
+address = "0.0.0.0"
+port = 8000
+workers = 4
+keep_alive = 5
+log_level = "critical"
+# secret_key = [randomly generated at launch]
+# limits = { forms = 32768 }
